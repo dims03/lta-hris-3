@@ -59,5 +59,39 @@
     	autoClose:true
     });
   });
+	
+  $("#department").on('change', function () {
+      var url = '{{ route('backend.get_department_jabatan') }}';
+	    $.ajax({
+	      type : "POST",
+	      url : url,
+	      data: {
+          department:$("#department").val(),
+          jabatan:$("#level").val(),
+          _token:"{{ csrf_token() }}",
+        },
+	      dataType : "json",
+	      success: function(response){
+	        $("#jabatan").html(response.listdoc);
+	      },
+	    });
+	  });
+
+      $("#level").on('change', function () {
+      var url = '{{ route('backend.get_department_jabatan') }}';
+	    $.ajax({
+	      type : "POST",
+	      url : url,
+	      data: {
+          department:$("#department").val(),
+          jabatan:$("#level").val(),
+          _token:"{{ csrf_token() }}",
+        },
+	      dataType : "json",
+	      success: function(response){
+	        $("#jabatan").html(response.listdoc);
+	      },
+	    });
+	  });
 </script>
 @endsection

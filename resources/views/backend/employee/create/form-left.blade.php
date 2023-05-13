@@ -41,16 +41,16 @@
 </div>
 <div class="form-group row">
   <div class="col-md-3"><label class="col-form-label">Perusahaan</label></div>
-  <div class="col-md-4">{!! Form::select('perusahaan_id',$perusahaan,null,['class'=>'form-control select2','placeholder'=>'-- Perusahaan --','id'=>'perusahaan']) !!}</div>
-</div>
-<div class="form-group row">
-  <div class="col-md-3"><label class="col-form-label">Department</label></div>
-  <div class="col-md-4">{!! Form::select('department_id',$department,null,['class'=>'form-control select2','placeholder'=>'-- Department --','id'=>'department']) !!}</div>
+  <div class="col-md-6">{!! Form::select('perusahaan_id',$perusahaan,null,['class'=>'form-control select2','placeholder'=>'-- Perusahaan --','id'=>'perusahaan']) !!}</div>
 </div>
 <div class="form-group row">
   <div class="col-md-3"><label class="col-form-label">Principle</label></div>
   <div class="col-md-6">{!! Form::select('divisi_id',$divisi,null,['class'=>'form-control select2','placeholder'=>'-- Principle --']) !!}</div>
 </div>
+<div class="form-group row">
+    <div class="col-md-3"><label class="col-form-label">Department</label></div>
+    <div class="col-md-4">{!! Form::select('department_id',$department,null,['class'=>'form-control select2','placeholder'=>'-- Department --','id'=>'department']) !!}</div>
+  </div>
 <div class="form-group row">
   <div class="col-md-3"><label class="col-form-label">Level</label></div>
   <div class="col-md-6">{!! Form::select('jabatan_id',$jabatan,null,['class'=>'form-control select2','placeholder'=>'-- Level Jabatan --','id'=>'level']) !!}</div>
@@ -62,8 +62,4 @@
 <div class="form-group row">
   <div class="col-md-3"><label class="col-form-label">Atasan Langsung</label></div>
   <div class="col-md-6">{!! Form::select('atasan_id',$atasan,null,['class'=>'form-control select2','required'=>true,'placeholder'=>'-- Atasan Langsung --']) !!}</div>
-</div>
-<div class="form-group row">
-	<div class="col-md-3"><label class="col-form-label">Kontak Darurat</label></div>
-	<div class="col-md-6">{!! Form::text('emergency_call',null,['class'=>'form-control']) !!}</div>
 </div>

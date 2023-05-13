@@ -17,7 +17,18 @@ class EmployeeServices
 								 ->whereNull('resign_st')
 								 ->get();
 		}
+		else
+		{
+			
+		}
 
 		return $row;
+	}
+
+	public function detail($id)
+	{
+		$get = User::find($id);
+
+		return $get;
 	}
 }

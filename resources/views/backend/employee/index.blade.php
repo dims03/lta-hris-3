@@ -53,7 +53,7 @@
 					<td class="text-center">{{ isset($item->divisi_id) ? $item->divisi->title : '-' }}</td>
 					<td class="text-center">{{ isset($item->department_id) ? $item->department->title : '-' }}</td>
 					<td class="text-center">
-						<a href="">
+						<a href="{{ route('backend.employee.detail',$item->id) }}" target="_blank">
 							<span class="badge badge-success">Detail</span>
 						</a>
 					</td>

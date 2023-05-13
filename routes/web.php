@@ -36,12 +36,15 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/backend/logout', [BackendController::class, 'logout'])->name('backend.logout');
 	Route::get('/backend/password', [BackendController::class, 'password'])->name('backend.password');
 	Route::get('/backend/history', [BackendController::class, 'history'])->name('backend.history');
+	Route::post('/backend/get_department_jabatan', [BackendController::class, 'get_department_jabatan'])->name('backend.get_department_jabatan');
 
 	Route::get('/backend/users', [UserController::class, 'index'])->name('backend.users');
 
 	Route::get('/backend/approval_hrd', [ApprovalHrdController::class, 'index'])->name('backend.approval_hrd');
 
 	Route::get('/backend/employee', [EmployeeController::class, 'index'])->name('backend.employee');
+
 	Route::get('/backend/employee/create', [EmployeeController::class, 'create'])->name('backend.employee.create');
 	Route::post('/backend/employee/store', [EmployeeController::class, 'store'])->name('backend.employee.store');
+	Route::get('/backend/employee/detail/{id}', [EmployeeController::class, 'detail'])->name('backend.employee.detail');
 });

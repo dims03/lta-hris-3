@@ -20,6 +20,8 @@ use App\Models\User;
 use App\Models\UserLokasi;
 use App\Services\Employee\EmployeeServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class EmployeeController extends Controller
 {
@@ -120,6 +122,76 @@ class EmployeeController extends Controller
 
 	public function store(Request $request)
 	{
-		# code...
+		// dd($request->all());
+
+		$name = auth()->user()->email;
+    $menu = "Data Karyawan";
+
+    $image = $request->file('foto');
+    $nik = generate_nik($request->join_date, $request->lokasi_id);
+
+    if (empty($image)) 
+    {
+      $data = $request->all();
+      $data['nik'] = $nik;
+      $data['password'] = Hash::make($nik);
+      $data['role_id'] = 5;
+    } 
+    else 
+    {
+      $input['imagename'] = time() . '.' . $image->extension();
+      $path = public_path('/storage/upload/employee/' . $nik . '/');
+      if (!FacadesFile::isDirectory($path)) {
+        FacadesFile::makeDirectory($path, 0777, true, true);
+      }
+
+      $image->move($path, $input['imagename']);
+      $origin = $input['imagename'];
+
+      $data = $request->all();
+      $data['nik'] = $nik;
+      $data['password'] = Hash::make($nik);
+      $data['foto'] = $origin;
+      $data['role_id'] = 5;
+    }
+
+    User::create($data);
+
+    $title = $name;
+    $action = '<badge class="badge badge-success">INSERT DATA</badge>';
+    $keterangan = "Input data baru dari menu <b>" . $menu . "</b> dengan title : <b>" . $request->name . "</b> , By : <b>" . $name . "</b>";
+
+    history($title, $action, $keterangan);
+
+    $alert = array(
+      'type' => 'info',
+      'message' => 'Data berhasil di input'
+    );
+    return redirect()->route('backend.employee')->with($alert);
+	}
+
+	public function detail($id)
+	{
+		$assets = [
+      'style' => array(
+        'assets/js/plugins/air-datepicker/css/datepicker.min.css'
+      ),
+      'script' => array(
+        'assets/js/plugins/notifications/sweet_alert.min.js',
+        'assets/js/plugins/forms/selects/select2.min.js',
+				'assets/js/plugins/air-datepicker/js/datepicker.min.js',
+				'assets/js/plugins/air-datepicker/js/i18n/datepicker.en.js'
+      )
+    ];
+
+		$row = $this->service->detail($id);
+
+		$data = [
+			'id' => $id,
+      'title' => 'Detail - Data Karyawan',
+			'row' => $row
+    ];
+
+    return view('backend.employee.detail.index')->with($data);
 	}
 }

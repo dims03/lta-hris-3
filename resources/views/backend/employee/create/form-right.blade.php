@@ -17,9 +17,9 @@
       <select name="lokasi_id" class="form-control select2">
         <option value="">-- Lokasi Kerja --</option>
         @foreach ($lokasi as $lokasi)
-        <option value="{{ $lokasi->lokasi_id }}">{{ $lokasi->lokasi->title }}</option>            
+        <option value="{{ $lokasi->lokasi_id }}">{{ $lokasi->lokasi->title }}</option>
         @endforeach
-      </select>  
+      </select>
     @endif
   </div>
 </div>
@@ -62,6 +62,10 @@
 <div class="form-group row">
   <div class="col-md-4"><label class="col-form-label">Alamat Domisili</label></div>
   <div class="col-md-8">{!! Form::textarea('alamat_lain',null,['class'=>'form-control','rows'=>2]) !!}</div>
+</div>
+<div class="form-group row">
+	<div class="col-md-4"><label class="col-form-label">Kontak Darurat</label></div>
+	<div class="col-md-8">{!! Form::text('emergency_call',null,['class'=>'form-control']) !!}</div>
 </div>
 <div class="form-group row">
   <div class="col-md-4"><label class="col-form-label">Alamat KTP</label></div>
